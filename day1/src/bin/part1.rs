@@ -10,14 +10,18 @@ fn part1(input: &str) -> i32 {
     let lines = input.split("\n");
 
     for coordinate in lines {
-        let n: String = coordinate
+        let numbers: Vec<_> = coordinate
             .chars()
             .filter(|char| char.is_digit(10))
             .collect();
 
-        // convert string to i32 and push
-        let new_number: i32 = n.parse().unwrap();
-        sum += new_number;
+        let last = numbers.last().unwrap();
+        let first = numbers.first().unwrap();
+        let result = format!("{}{}", first, last);
+
+        let to_add: i32 = result.parse().unwrap();
+
+        sum += to_add;
     }
 
     return sum;
